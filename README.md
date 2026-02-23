@@ -9,3 +9,22 @@
   구현 환경에는 Rasberry Pi(2대), Hackrf One(2대)을 사용한다. 2대의 Rasberry Pi에 각각 송수신기기인 ‘HackRF one’을 연결하여 2대로 와이파이를 송수신한다. 송신 Rasberry Pi에 Kali Linux를 사용하고, 수신 Rasberry Pi에는 Raspberry Pi OS를 사용한다. 송수신 제어는 GNURadio로 작성한다. 추출된 wav 파일은 2가지 방식으로 분석한다. 첫 번째로 Colab을 활용하여 파이썬 코드로 wav 파일을 시각화 및 분석한다. wav 파일을 FFT, STFT, MFCC 그래프로 표현하여 행동 규칙을 찾는 데 참고한다. 두 번째로 wav파일을 csv파일로 변환 후 이상 행동 안에서 규칙적인 특징을 탐색한다. 
   
   구현 결과로 고개를 끄덕이는 행동의 전파를 분석한 결과 진폭의 절댓값이 0.04 이상이라는 규칙적인 특징을 발견하였다. 행동이 감지되었음을 확인하기 위해 아두이노(Piezo buzzer)를 활용하여 경고음을 내도록 구현하였다. 이 기능은 졸음운전 중인 운전자를 깨우는 것으로 활용 가능하다. 추가로 신체 이상 반응이 감지된 경우 안전신고센터에 위험 감지 문자를 전송하여 운전자의 위험 상황을 알릴 수 있다.
+
+
+1. Connect 2 HackRF one (Radio half-duplex Transceiver) using [GNU Radio](https://github.com/gnuradio)
+
+2. Repeat the abnormal behavior (nodding of the head) between 2 HackRF one and extract the .wav file<br />
+    <img width="60%" src="/rpic/environment.jpeg"/>
+
+3. Analyze .wav files using [Audacity](https://github.com/audacity)
+
+4. Use [wav2csv.py](http://wav2csv.py/) to convert .wav files to .csv files and analyze them<br />
+    <img width="60%" src="/rpic/wav2csv.png"/>
+    
+5. Analyze .wav files with Python using Colab<br />
+    <img width="60%" src="/rpic/colab.png"/>
+    
+6. Based on step 5, write anomaly detection code
+
+7. Use piezo buzzer for the Alarm sound , [twilio](https://www.twilio.com/) for text transmission<br />
+    <img width="60%" src="/rpic/buztwi.gif"/>
