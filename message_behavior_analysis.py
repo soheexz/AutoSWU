@@ -52,13 +52,14 @@ if sr>= 0.04:                                 # Detects abnormalities in the bod
   GPIO.cleanup()
 
   # Text Transfer Part
-  account_sid = 'AC119bdb4229d503ede749ebff8cbfe2f6'
-  auth_token = '183b2224b2486342cfaab6bbb5314451'
+  account_sid = 'AWILIO_ACCOUNT_SID'
+  auth_token = 'AWILIO_ACCOUNT_TOKEN'
+
   client = Client(account_sid, auth_token)
       
   message = client.messages.create(
-      to="+8201036233002",
-      from_="+12183044999",
+      to="SEND_PHONE_NUMBER",
+      from_="RECEIVE_PHONE_NUMBER",
       body="\n[WNIC]\n Driver's body abnormality detected!!\n")
 
   print(message.sid, datetime.datetime.now())
